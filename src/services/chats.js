@@ -1,7 +1,6 @@
 import OpenAI from 'openai';
 import jsPDF from 'jspdf';
 
-
 const database = []
 const parameters = JSON.parse(localStorage.getItem("formData"));
 const interviewQNo = localStorage.getItem("interviewType");
@@ -22,15 +21,11 @@ const hardQuestions = [
   "How do you stay up-to-date with industry trends?",
   "Tell me about a time when you had to meet a tight deadline.",
   "What do you consider your greatest professional achievement?"
-]
-;
-
-
+];
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_REACT_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true});
-
 
 export async function sendMsgToOpenAI(message) {
   loadMessages();
@@ -98,8 +93,6 @@ async function loadMessages() {
           "content": interviewPrompt
       });
 
-      console.log(interviewPrompt);
-
       database.push({
         "role": "assistant",
         "content": `Hi! I'm Quizzy. How are you doing today?`
@@ -130,7 +123,7 @@ export function downloadTranscript() {
       if (chat.role === 'assistant') {
         role = 'Quizzy';
     } else if (chat.role === 'user') {
-        role = parameters.name; 
+        role = parameters.name? parameters.name : 'User'; 
       }
 
     let line = 0

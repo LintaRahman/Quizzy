@@ -16,7 +16,7 @@ const FormPage = () => {
 
   return (
    <>
-   <Navbar />
+   {/* <Navbar /> */}
    <section className="formContainer">
     
    <h1>Choose the type of interview</h1>
