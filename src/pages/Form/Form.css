@@ -1,0 +1,216 @@
+/* Add this CSS in your styles file, e.g., styles.css
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  Add more styles as needed
+   */
+
+   .formContainer {
+    text-align: left;
+    /* margin-top: 10vh; */
+    /* height: 90vh; */
+    
+padding: 7rem 0rem 2rem 0rem;
+display: flex;
+flex-direction: wrap;
+   }
+   .formContainer h1{
+    text-align: center;
+    font-size: 4rem;
+   }
+
+   .formContainer .formItem{ 
+    padding: 10px 0;
+    min-height: auto;
+    /* margin: 20px; */
+   }
+
+   .formContainer .formItem label{
+    /* display: block; */
+    /* text-align: center; */
+    font-size: 1.5rem;
+    display: inline-block;
+    padding: 5px 5px;
+    /* float: left; */
+    /* width: 25%; */
+    /* margin-top: 6px; */
+   }
+
+   .formContainer .formItem input {
+    border-radius: 10px;
+    min-height: 30px;
+    /* flex: 1; */
+    width: 100%;
+    padding: 10px 20px;
+    margin: 0 20px;
+    font-size: 1.2rem;
+    font-family: poppins;
+   }
+
+   /* .formContainer .formItem input[type = 'text']{
+    
+   } */
+
+   .formContainer .formItem input[type = 'para']{
+    height: 25vh;
+    font-size: 1.2rem;
+   }
+
+   .radioButtons { 
+    display: flex;
+    flex-direction: row;
+   }
+
+   .radiobutton{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    
+   }
+
+   .radiobutton label {
+    padding: 5px;
+   }
+
+   /* input[type="radio"] {
+    margin-right: 5px;
+    min-height: 30px;
+  } */
+/* 
+  input[type="radio"] {
+    /* width: 12px; */
+    /* padding: 0; */
+    /* margin-right: 5px; */
+    /* flex-shrink: 0; 
+  } */
+   .formContainer input[type = 'submit']{
+    
+    /* align-self: right; */
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    padding: 15px 10px ;
+    margin: 10px 20px;
+    margin-left: 30%;
+    width: 75%;
+    background-color: #5a4bff;
+    color: white;
+    border-radius: 20px;
+   }
+
+   .query {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    background-color: transparent;
+    color: rgba(222, 222, 222, 1);
+    padding: 1.5rem;
+    width: 20rem;
+    height: 20rem;
+    margin: 1rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(98, 98, 98, 1);
+  }
+
+  .red:hover{
+    background-color: rgba(168, 30, 30, 0.3);
+    transition: .3s ease-out;
+  }
+  
+  
+  .orange:hover{
+    background-color: rgba(168, 134, 30, 0.3);
+    transition: .3s ease-out;
+  }
+  
+  
+  .blue:hover{
+    background-color: rgba(30, 168, 152, 0.3);
+    transition: .3s ease-out;
+  }
+
+  .pink:hover{
+    background-color: rgba(145, 30, 168, 0.3);
+    transition: .3s ease-out;
+  }
+
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    /* display: inline-block; */
+  }
+  
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+
+    .formContainer .formItem input {
+      margin: 0;
+    }
+
+    .formContainer .formItem label {
+      padding-left: 20px;
+      font-weight: 1000;
+    }
+  }
+
+  .buttonsContainer {
+    padding-top: 15vh;
+    display: flex;
+    flex-direction: row;
+  }
+  @media screen and (max-width: 850px){
+    .buttonsContainer{
+      flex-direction: column;
+      padding-top: 5vh ;
+    }
+  }
+

@@ -1,0 +1,37 @@
+.chat-loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px; /* Set the desired height */
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    background-color: white; /* Set the desired color */
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: pulse 1s infinite ease-in-out;
+  }
+  
+  .dot1 {
+    animation-delay: 0s;
+  }
+  
+  .dot2 {
+    animation-delay: 0.2s;
+  }
+  
+  .dot3 {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.8);
+    }
+  }
+  

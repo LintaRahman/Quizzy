@@ -1,0 +1,39 @@
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+    /* background-color: rgba(28, 30, 58, 1); */
+    background-color: rgb(75, 79, 142);
+    color: white;
+    /* border: 10px solid white; */
+}
+@media screen and (max-width: 768px){
+    audio {
+        width: 50vw;
+    }
+}
+
+
+/* audio::-webkit-webkit-media-controls-play-button{
+   color: white;
+}
+
+audio::-webkit-media-controls-timeline {
+
+}
+audio {
+    border: none;
+}
+ */
+
+
+/* audio::-webkit-media-controls-timeline {
+    color: white;
+    background-color: #B1D4E0;
+    border-radius: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+} */ 
+/* 
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-current-time-display {
+    color: #fff;
+}  */
