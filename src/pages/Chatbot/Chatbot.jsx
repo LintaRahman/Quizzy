@@ -8,12 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { sendMsgToOpenAI } from "../../services/chats.js";
 import ChatLoader from "../../components/ChatLoader/ChatLoader";
 import AudioComponent from "../../components/AudioComponent/AudioComponent";
-import {
-  faPlus, faMessage, faHome, faPaperPlane, faRobot, faUser, faMicrophone, faCircleQuestion, faCircleInfo, faMicrophoneSlash,
+import {faPaperPlane, faRobot, faUser, faMicrophone, faMicrophoneSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import robotIcon from '../../assets/robot-icon.png';
 import convertSpeechToText from "../../services/SpeechToText.js";
-import Sidebar from "../../components/SideBar/Sidebar";
 
 const parameters = JSON.parse(localStorage.getItem("formData"));
 
