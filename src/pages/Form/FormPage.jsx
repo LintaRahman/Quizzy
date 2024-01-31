@@ -7,7 +7,7 @@ const FormPage = () => {
 
   return (
    <>
-   {/* <Navbar /> */}
+   <Navbar />
    
    <section className="formContainer">
    <h1>Tell Quizzy about yourself</h1>

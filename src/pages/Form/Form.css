@@ -222,6 +222,17 @@ flex-direction: wrap;
       padding-left: 0;
      }
 
+     .iconStyle{
+      height: 4rem;
+     }
+
+     .f3 .query {
+      padding: 4rem 4rem;
+      width: 20rem;
+      height: 17rem;
+
+     }
+
 
   }
 
@@ -237,3 +248,7 @@ flex-direction: wrap;
     }
   }
 
+
+  .iconStyle {
+    height: 7rem;
+    }

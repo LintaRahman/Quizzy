@@ -14,9 +14,13 @@ const FormPage = () => {
     navigate('/chat');
   }
 
+  const iconStyle = {
+    height: '7rem',
+  }
+
   return (
    <>
-   {/* <Navbar /> */}
+   <Navbar />
    <section className="formContainer">
     
    <h1>Choose the type of interview</h1>
@@ -24,7 +28,7 @@ const FormPage = () => {
    
    {/* </div> */}
    
-   <div className='buttonsContainer'>
+   <div className='buttonsContainer f3'>
    
    <button className="query blue" value='0' onClick={handleEnter}>
    <FontAwesomeIcon icon={faDroplet} style={{height: '7rem'}}/>

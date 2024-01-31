@@ -156,11 +156,12 @@ const Sidebar = () => {
   // }, []); // Empty dependency array ensures the effect runs once on mount
 
   return (
-    <></>
-    // <Nav navbar={`${navbar}`}>
-    //   {/* <div className="logo">Quizzy</div> */}
-    //   <Icon />
-    // </Nav>
+    <>
+    <Nav navbar={`${navbar}`}>
+      {/* <div className="logo">Quizzy</div> */}
+      <Icon />
+    </Nav>
+    </>
   );
 };
 

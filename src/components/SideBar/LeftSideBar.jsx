@@ -35,6 +35,7 @@ const SideBar = styled.div`
 
   .midBtn {
     background: #5a4bff;
+    // background: #6a1888;
     border: none;
     color: white;
     padding: 1.5rem;
