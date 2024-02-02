@@ -46,7 +46,7 @@ form {
     /* margin-top: 10vh; */
     /* height: 90vh; */
     
-padding: 10rem 0rem 2rem 0rem;
+padding: 6rem 0rem 0rem 0rem;
 display: flex;
 flex-direction: wrap;
    }
@@ -84,9 +84,13 @@ flex-direction: wrap;
     font-family: poppins;
    }
 
-   /* .formContainer .formItem input[type = 'text']{
-    
-   } */
+   .formContainer .formItem input[type = 'text']{
+      height: 5rem;
+   }
+
+   .formContainer .formItem input[type = 'number']{
+    height: 5.5rem;
+ }
 
    .formContainer .formItem input[type = 'para']{
     height: 25vh;

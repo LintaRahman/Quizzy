@@ -102,7 +102,7 @@ async function loadMessages() {
 }
 
 export function downloadTranscript() {
-  // loadMessages();
+  loadMessages();
   const maxLineWidth = 180;
   const pdfDoc = new jsPDF();
 
@@ -111,11 +111,14 @@ export function downloadTranscript() {
   // Loop through the JSON object and add each "role" and "content" pair to the PDF
   transcript.forEach((chat, index) => {
     if (lines >= 20) {
-      pdfDoc.addPage()
+      pdfDoc.addPage();
+      lines = 0; // Reset lines count for the new page
+      page += 1;
     }
     // Adjust the vertical position for each entry
     pdfDoc.setFontSize(12);
-    const yPos = 40 + index * 20; 
+    // const yPos = 40 + index * 20; 
+    const yPos = 40 + lines * 20; 
    
     // pdfDoc.setFont('bold');
     // Add each line to the PDF
@@ -126,18 +129,21 @@ export function downloadTranscript() {
         role = parameters.name? parameters.name : 'User'; 
       }
 
-    let line = 0
-    pdfDoc.text(`${role}`, 30, yPos + line * 20);
+    // let lines = 0
+    // pdfDoc.text(`${role}`, 30, yPos + line * -20);
+    pdfDoc.text(`${role}`, 30, yPos + lines * 10);
 
      // Split the content into multiple lines if it exceeds the maximum width
      const contentLines = pdfDoc.splitTextToSize(chat.content, maxLineWidth);
-     lines += contentLines.length;
+    //  lines += contentLines.length;
     contentLines.forEach((line, lineIndex) => {
-      pdfDoc.setFontSize(10);
-      // pdfDoc.setFont('normal');
-      pdfDoc.text(`${line}`, 30, yPos + lineIndex * 10);
-      line = lineIndex + 2;
-    });
+        pdfDoc.setFontSize(10);
+        // pdfDoc.setFont('normal');
+        lines += 1;
+        pdfDoc.text(`${line}`, 30, yPos + lines * 10 + (lineIndex + 1));
+        
+        // lines = lineIndex + 2;
+      });
   });
   
   // Save the PDF to a file

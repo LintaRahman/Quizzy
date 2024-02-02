@@ -10,7 +10,6 @@ const FormPage = () => {
   const handleEnter = (e) => {
     const value = e.target.value;
     localStorage.setItem('voice', value);
-
     navigate('/form3');
   }
 

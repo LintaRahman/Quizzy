@@ -1,0 +1,20 @@
+.feedbackContainer {
+    padding: 7rem 10rem;
+}
+
+.feedbackButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+@media (max-width: 850px) {
+    .feedbackContainer{
+        padding: 5rem 7rem;
+    }
+
+    .feedbackButtonsContainer{
+        flex-direction: column;
+    }
+    
+}

@@ -113,9 +113,9 @@ const FormComponent = () => {
 
       <div className='formItem'>
       <div className="col-25">
-        <label>Years</label>
+        <label>Years of <br/>Experience</label>
         </div>
-      <div className="col-75">
+      <div className="col-75" >
         <input type="number" 
              name="years_of_experience"
              max="90"

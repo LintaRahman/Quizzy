@@ -27,7 +27,7 @@ const Icon = () => {
   return (
     <>
       <StyledIcon open={open} onClick={() => setOpen(!open)}>
-        {!open? <FontAwesomeIcon icon={faXmark} style={{fontSize: "4rem"}}/> :
+        {!open? <FontAwesomeIcon icon={faXmark} style={{fontSize: "4rem", paddingLeft: '230px'}}/> :
       <FontAwesomeIcon icon={faCommentDots} style={{fontSize: "4rem"}} />}
       
       </StyledIcon>

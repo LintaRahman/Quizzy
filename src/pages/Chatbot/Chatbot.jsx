@@ -209,7 +209,7 @@ const Chatbot = () => {
                           style={{ display: "flex", flexDirection: "column" }}
                         >
                           <div style={{ padding: "5px" }}>
-                            <AudioComponent msg={message.text} /> 
+                            {/* <AudioComponent msg={message.text} />  */}
                           </div>
                           <div>
                             <TypeAnimation

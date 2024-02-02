@@ -12,8 +12,8 @@ const Nav  = styled.nav`
   position: fixed;
   top: 0;
   // left: 20px;
-  // background: ${({ navbar }) => (navbar ? 'rgb(3, 0, 31)' : 'transparent')};
-  // border-bottom: ${({ navbar }) => (navbar ? '1px solid rgb(100, 100, 100)' : 'none')};
+  background: ${({ Navbar }) => (Navbar ? 'rgba(3, 0, 31, 1)' : 'transparent')};
+  // border-bottom: ${({ Navbar }) => (Navbar ? '1px solid rgb(100, 100, 100)' : 'none')};
   color: white;
   z-index: 20;
   transition: all 0.3s ease;
@@ -28,19 +28,18 @@ const Nav  = styled.nav`
 
   @media (max-width: 768px) {
     .logo {
-      padding: 10px 5px;
+      padding: 15px 15px;
     }
   }
 `;
 
-const Navbar = ({page}) => {
+const Navbar = ({page, scrollVal = 30}) => {
   const [navbar, setNavbar] = useState(false);
 
   useEffect(() => {
     
     const changeBackground = () => {
-      // console.log(window.scrollY);
-      if (window.scrollY >= 250) {
+      if (window.scrollY >= scrollVal) {
         setNavbar(true);
       } else {
         setNavbar(false);
@@ -56,7 +55,7 @@ const Navbar = ({page}) => {
   }, []); // Empty dependency array ensures the effect runs once on mount
 
   return (
-    <Nav navbar={`${navbar}`}>
+    <Nav Navbar={navbar}>
       {/* <Icon /> */}
       {page === 'chatbot'? <Icon /> : <div className="logo">Quizzy</div> }
       
