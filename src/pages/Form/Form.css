@@ -46,7 +46,7 @@ form {
     /* margin-top: 10vh; */
     /* height: 90vh; */
     
-padding: 7rem 0rem 2rem 0rem;
+padding: 10rem 0rem 2rem 0rem;
 display: flex;
 flex-direction: wrap;
    }
@@ -202,6 +202,9 @@ flex-direction: wrap;
       font-weight: 1000;
     }
 
+    .formContainer .formItem input[type = 'para']{
+      height: 20vh;
+     }
 
 
     .formContainer input[type = 'submit']{
@@ -213,6 +216,7 @@ flex-direction: wrap;
       padding: 15px 10px ;
       margin: 10px 0px;
       width: 100%;
+      height: 52px;
       background-color: #5a4bff;
       color: white;
       border-radius: 20px;

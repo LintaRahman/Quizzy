@@ -31,6 +31,31 @@ const profImgStyle = {
 };
 
 const Chatbot = () => {  
+  const [pageLoading, isPageLoading] = useState(true);
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const hasReloaded = localStorage.getItem('hasReloaded');
+        if (!hasReloaded) {
+          // Reload the page
+          localStorage.setItem('hasReloaded', true);
+          window.location.reload();
+        } else {
+          // If the page has already reloaded, stop the loading state
+          isPageLoading(false);
+        }
+
+      } catch (error) {
+        console.error("Error loading data from localStorage:", error);
+        // isPageLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const mimeType = "audio/webm";
   const [permission, setPermission] = useState(true); //REMEMBER TO SET TO FALSE
   const mediaRecorder = useRef(null);
@@ -121,7 +146,7 @@ const Chatbot = () => {
   const msgEnd = useRef(null);
   const [loading, isLoading] = useState(false);
   const [prompt, setPrompt] = useState("");
-  const name = parameters.name? parameters.name : '';
+  const name = parameters?.name??  'User';
   const [messages, setMessages] = useState([
     {
       text: `Hi ${name}, I'm Quizzy. How are you doing today?`,
@@ -131,7 +156,9 @@ const Chatbot = () => {
   ]);
 
   useEffect(() => {
-    msgEnd.current.scrollIntoView();
+    if (msgEnd.current) {
+      msgEnd.current.scrollIntoView();
+    }
   }, [messages]);
 
   const handleSend = async () => {
@@ -154,8 +181,13 @@ const Chatbot = () => {
 
   return (
     <>
-      
+      {pageLoading ? (
+        <section className="pageContainer">
+      <ChatLoader/></section>
+      ) : (
+      <>
       <Navbar page="chatbot"/>
+      
       <div className="Chatbot">
         <div className="main">
           <div className="chats">
@@ -184,7 +216,7 @@ const Chatbot = () => {
                               sequence={[message.text]}
                               wrapper="p"
                               speed={50}
-                              cursor="no"
+                              cursor="none"
                               repeat={1}
                             />
                           </div>
@@ -258,6 +290,7 @@ const Chatbot = () => {
           </div>
         </div>
       </div>
+      </> )}
     </>
   );
 };

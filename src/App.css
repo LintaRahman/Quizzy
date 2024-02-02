@@ -43,3 +43,9 @@ body {
   margin-bottom: .5rem;
   border-radius: 0.5rem;
 }
+
+@media  screen and (max-width: 800px) {
+  .pageContainer {
+    padding: 10rem 5rem;
+  }
+}

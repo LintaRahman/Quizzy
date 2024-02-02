@@ -11,7 +11,7 @@ const Header = ({ text, page, img }) => {
           <video src={HeaderVideo} autoPlay loop muted></video>
           <Fade direction="up" cascade>
           <h1>Meet Quizzy</h1>
-          <h3>The next generation interviewer bot</h3>
+          <h2>The next generation interviewer bot</h2>
           <a href='/form'>
             <button className="whitebutton" onClick={localStorage.clear()}>Try it now!</button>
           </a>

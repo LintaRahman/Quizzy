@@ -84,6 +84,8 @@ const RightNav = ({ open }) => {
     console.log("clicked");
   };
 
+  const name = parameters?.name ?? 'User';
+
 
 
   return (
@@ -113,7 +115,7 @@ const RightNav = ({ open }) => {
             <p>
                       <span className='bold'>Name:</span> 
                       <TypeAnimation
-                              sequence={parameters.name}
+                              sequence={name}
                               speed={50}
                               cursor="no"
                               repeat={1}

@@ -25,14 +25,22 @@ const Nav  = styled.nav`
     font-size: 2.5rem;   
     z-index: 25;
   }
+
+  @media (max-width: 768px) {
+    .logo {
+      padding: 10px 5px;
+    }
+  }
 `;
 
 const Navbar = ({page}) => {
   const [navbar, setNavbar] = useState(false);
 
   useEffect(() => {
+    
     const changeBackground = () => {
-      if (window.scrollY >= 25) {
+      // console.log(window.scrollY);
+      if (window.scrollY >= 250) {
         setNavbar(true);
       } else {
         setNavbar(false);

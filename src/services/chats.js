@@ -127,7 +127,7 @@ export function downloadTranscript() {
       }
 
     let line = 0
-    pdfDoc.text(`${role}`, 30, yPos + line * - 10);
+    pdfDoc.text(`${role}`, 30, yPos + line * 20);
 
      // Split the content into multiple lines if it exceeds the maximum width
      const contentLines = pdfDoc.splitTextToSize(chat.content, maxLineWidth);

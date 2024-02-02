@@ -7,6 +7,10 @@ const Home = () => {
     <>
     <Navbar />
     <Header page="home"/>
+    <section className="pageContainer">
+    <h1>About Quizzy</h1>
+    <p>Quizzy is an AI powered chatbot that utlises the OpenAI APIs to simulate an interview situation.</p>
+    </section>
     </>
   )
 }

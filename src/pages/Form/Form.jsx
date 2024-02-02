@@ -38,6 +38,7 @@ const FormComponent = () => {
 
   const handleEnter = (e) => {
     e.preventDefault();
+    localStorage.clear();
 
     // Update the JSON object with the form data
     // Replace the keys in the JSON object with the form data
@@ -45,10 +46,10 @@ const FormComponent = () => {
     // formData.language = formData.language? formData.language : 'English' ;
     // console.log(formData.language);
     const updatedJson = {
-      name: formData.name,
+      name: formData.name? formData.name : 'User',
       student: formData.student === 'true', // Convert string to boolean
       years_of_experience: parseInt(formData.years_of_experience, 10),
-      job: formData.job,
+      job: formData.job? formData.job : 'Job',
       job_description: formData.job_description,
       // language: formData.language
     };
@@ -66,7 +67,7 @@ const FormComponent = () => {
       
       <div className='formItem'>
       <div className="col-25">
-        <label>First Name</label>
+        <label>Name</label>
         </div>
       <div className="col-75">
         <input type="text" 
