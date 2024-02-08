@@ -6,7 +6,7 @@ const openai = new OpenAI({
 
 async function convertTextToAudio(msg) {
   try {
-    const voice = localStorage.getItem("voice") ? localStorage.getItem("voice") : 'alloy';
+    const voice = localStorage.getItem("voice") ?  'alloy' : localStorage.getItem("voice");
     const mp3 = await openai.audio.speech.create({
       model: "tts-1",
       voice: voice,

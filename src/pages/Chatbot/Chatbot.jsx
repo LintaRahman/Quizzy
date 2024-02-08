@@ -25,6 +25,7 @@ import convertSpeechToText from "../../services/SpeechToText.js";
 import RecordMessage from "../../components/RecordMessage/RecordMessage.jsx";
 import { ReactMediaRecorder } from "react-media-recorder";
 import RecordIcon from "../../components/RecordMessage/RecordIcon.jsx";
+import { Link } from "react-router-dom";
 
 const parameters = JSON.parse(localStorage.getItem("formData"));
 
@@ -349,7 +350,7 @@ const Chatbot = () => {
                           cursor="none"
                           repeat={1}
                         />
-                        {/* <AudioComponent msg={feedback}/> */}
+                        <AudioComponent msg={feedback}/>
                         </>
                       )}
                     </p>
@@ -380,15 +381,13 @@ const Chatbot = () => {
                       </button>
                     </div>
                     <div className="chatsButtonsContainer">
+                      <Link to='https://qualtricsxm7gwbjys5f.qualtrics.com/jfe/form/SV_eFBgfGbd5xhvemi' target='_blank'>
                       <button
                         className="midBtn"
-                        onClick={() => {
-                          downloadTranscript();
-                        }}
                       >
                         <FontAwesomeIcon icon={faComments} style={iconStyle} />
                         Complete Survey
-                      </button>
+                      </button></Link>
                     </div>
                   </>
                 )}

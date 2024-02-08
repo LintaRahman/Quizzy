@@ -94,6 +94,7 @@ const FormComponent = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
+            placeholder="(Do not use your real name)"
           />
         </div>
       </div>
