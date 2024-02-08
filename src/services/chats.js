@@ -42,7 +42,6 @@ export async function sendMsgToOpenAI(message) {
   });
   
   const botMsg = res.choices[0].message.content;
-  console.log(botMsg.includes("Thank you for attending"));
   localStorage.setItem("EndOfInterview", botMsg.includes("Thank you for attending"));
   database.push({"role": "assistant", "content": botMsg});
 
@@ -69,7 +68,7 @@ export async function requestFeedback() {
   const botMsg = res.choices[0].message.content;
   database.push({"role": "assistant", "content": botMsg});
   localStorage.setItem("feedback", botMsg);
-  console.log(botMsg);
+  // console.log(botMsg);
 
   return botMsg;
 }
@@ -91,7 +90,7 @@ async function loadMessages() {
       Remember to maintain a professional and friendly tone throughout the conversation."`;
       // const interviewPrompt = 'You are saying bye to someone who just finished her interview. Say Thank you for attending this interview .....'
 
-      console.log(interviewPrompt);
+      // console.log(interviewPrompt);
 
       database.push({
           "role": "system",

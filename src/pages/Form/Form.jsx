@@ -84,7 +84,7 @@ const FormComponent = () => {
     <form onSubmit={handleEnter}>
       <div className="formItem">
         <div className="col-25">
-          <label>Name</label>
+          <label>Enter a name</label>
           {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
         <ToolTip text='Enter your name'/>
         </div>
@@ -101,7 +101,7 @@ const FormComponent = () => {
 
       <div className="formItem">
         <div className="col-25">
-          <label>Status</label>
+          <label>Are you a student?</label>
         </div>
         {/* 
         <div style={{margin: '0 20px'}}>
@@ -121,8 +121,8 @@ const FormComponent = () => {
           </label>
         </div> */}
 
-        <div className="radioButtons col-75">
-          <div className="radiobutton">
+        <div className=" radiobutton">
+          {/* <div className="radiobutton"> */}
             <input
               type="radio"
               name="student"
@@ -130,9 +130,9 @@ const FormComponent = () => {
               checked={formData.student === true}
               onChange={handleStudentInputChange}
             />
-            <label>Student</label>
-          </div>
-          <div className="radiobutton">
+            <label>Yes</label>
+          {/* </div>
+          <div className="radiobutton"> */}
             <input
               type="radio"
               name="student"
@@ -140,14 +140,14 @@ const FormComponent = () => {
               checked={formData.student === false}
               onChange={handleStudentInputChange}
             />{" "}
-            <label>Professional</label>
-          </div>
+            <label>No</label>
+          {/* </div> */}
         </div>
       </div>
 
       <div className="formItem">
         <div className="col-25">
-          <label>Years of Experience</label>
+          <label>Relevant years of experience in the job</label>
           {/* <ToolTip text='How many year of experience do you have in this role, or similar roles?' /> */}
         </div>
         <div className="col-75">
@@ -174,7 +174,7 @@ const FormComponent = () => {
       <div className="formItem">
         <div className="col-25">
           <label>Job Title</label>
-          <ToolTip text='Enter the title for the job you are applying for'/>
+          {/* <ToolTip text='Enter the title for the job you are applying for'/> */}
         </div>
         <div className="col-75">
           <input
@@ -194,11 +194,11 @@ const FormComponent = () => {
         <div className="col-75">
           <textarea
             name="job_description"
-            cols="40"
-            rows="5"
+            // cols=""
+            // rows="5"
             value={formData.job_description}
             onChange={handleInputChange}
-            placeholder="Please describe the job position in more detail below"
+            placeholder="Description for the job you are applying for(optional)"
           ></textarea>
           {/* <input
             type="para"

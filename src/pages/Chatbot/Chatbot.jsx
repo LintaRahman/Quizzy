@@ -123,6 +123,7 @@ const Chatbot = () => {
       // const transcriptText = transcript.data.text ? transcript.data.text : '';
       const text = transcript.data.text;
       setMessages([...messages, { text, isBot: false, audio: audioUrl }]);
+      console.log({ text, isBot: false, audio: audioUrl });
       if (text != "") {
         setTranscriptLoading(false);
         const res = await sendMsgToOpenAI(text);
@@ -131,6 +132,8 @@ const Chatbot = () => {
           { text: text, isBot: false, audio: audioUrl },
           { text: res, isBot: true, audio: "" },
         ]);
+
+        console.log(messages);
         checkEndOfInterview();        
       }
     } catch (error) {
