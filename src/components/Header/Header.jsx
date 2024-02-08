@@ -9,6 +9,7 @@ const Header = ({ text, page, img }) => {
       {page == "home" ? (
         <section className="videobox">
           <video src={HeaderVideo} autoPlay loop muted></video>
+          <div className="overlay"></div>
           <Fade direction="up" cascade>
           <h1>Meet Quizzy</h1>
           <h2>The next generation interviewer bot</h2>

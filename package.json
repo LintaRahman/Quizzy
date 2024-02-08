@@ -20,7 +20,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.4.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@mui/icons-material": "^5.14.14",
-        "@mui/material": "^5.14.14",
+        "@mui/material": "^5.15.7",
         "@mui/material-next": "^6.0.0-alpha.119",
         "axios": "^1.6.2",
         "babel-runtime": "^6.26.0",

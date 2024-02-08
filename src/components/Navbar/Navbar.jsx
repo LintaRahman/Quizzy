@@ -12,8 +12,8 @@ const Nav  = styled.nav`
   position: fixed;
   top: 0;
   // left: 20px;
-  background: ${({ Navbar }) => (Navbar ? 'rgba(3, 0, 31, 1)' : 'transparent')};
-  // border-bottom: ${({ Navbar }) => (Navbar ? '1px solid rgb(100, 100, 100)' : 'none')};
+  background: ${({ navbar }) => (navbar ? 'rgba(3, 0, 31, 1)' : 'transparent')};
+  border-bottom: ${({ navbar }) => (navbar ? '1px solid rgb(100, 100, 100)' : 'none')};
   color: white;
   z-index: 20;
   transition: all 0.3s ease;
@@ -55,7 +55,7 @@ const Navbar = ({page, scrollVal = 30}) => {
   }, []); // Empty dependency array ensures the effect runs once on mount
 
   return (
-    <Nav Navbar={navbar}>
+    <Nav navbar={navbar}>
       {/* <Icon /> */}
       {page === 'chatbot'? <Icon /> : <div className="logo">Quizzy</div> }
       

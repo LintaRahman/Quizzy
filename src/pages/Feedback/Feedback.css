@@ -1,5 +1,5 @@
 .feedbackContainer {
-    padding: 7rem 10rem;
+    /* padding: 7rem 10rem; */
 }
 
 .feedbackButtonsContainer {
@@ -10,7 +10,7 @@
 
 @media (max-width: 850px) {
     .feedbackContainer{
-        padding: 5rem 7rem;
+        /* padding: 5rem 7rem; */
     }
 
     .feedbackButtonsContainer{

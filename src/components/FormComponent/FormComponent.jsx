@@ -4,7 +4,7 @@ import Form from './Form'
 import { useNavigate } from 'react-router-dom';
 import parameters from '../../../../server/routes/parameters.json'
 
-const FormComponent = ({Title, Content}) => {
+const FormComponent = ({Title}, children) => {
   
 
   return (
@@ -13,7 +13,7 @@ const FormComponent = ({Title, Content}) => {
    
    <section className="formContainer">
    <h1>{Title}</h1>
-   {Content}
+   {children}
     </section>
    </>
   )

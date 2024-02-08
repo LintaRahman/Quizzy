@@ -10,7 +10,7 @@ const FormPage = () => {
    <Navbar />
    
    <section className="formContainer">
-   <h1>Tell Quizzy about yourself</h1>
+   <h1>Tell Quizzy about your job interview</h1>
    <FormComponent /> 
     </section>
    </>
