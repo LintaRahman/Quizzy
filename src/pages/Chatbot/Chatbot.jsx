@@ -322,7 +322,7 @@ const Chatbot = () => {
                               }}
                             >
                               <div style={{ padding: "5px" }}>
-                                {/* <AudioComponent msg={message.text} />  */}
+                                <AudioComponent msg={message.text} /> 
                               </div>
                               <div>
                                 <TypeAnimation
@@ -446,33 +446,7 @@ const Chatbot = () => {
               ) : (
                 <div className="chatFooter">
                   <div className="inp">
-                    {/* <ReactMediaRecorder
-                  audio
-                  onStop={handleStop}
-                  render={({ status, startRecording, stopRecording }) => (
-                    // <div className="mt-2">
-                    <div className="recording-animation-container">
-                      <button
-                        onMouseDown={startRecording}
-                        onMouseUp={stopRecording}
-                        
-                        // className="bg-white p-4 rounded-full"
-                        className="send"
-                      >
-                        <RecordIcon stat = {status}/>
-                      </button>
-                      {status === "recording" ? (
-                        <div className="recording-dot" />
-                      ) : null}
-                     <p className="mt-2 text-white font-light">{status}</p> 
-                    </div>
-                  )}
-                /> */}
-                    {/* <RecordMessage handlestop={handleStop} /> */}
-
-
                     {!recordingStatus ? (
-                      
                       <button onClick={startRecording} className="send">
                         <FontAwesomeIcon
                           icon={faMicrophoneSlash}

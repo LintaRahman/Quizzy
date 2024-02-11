@@ -24,18 +24,6 @@ const convertSpeechToText = async (blobURL) => {
         const responseFromFetch = await fetch(blobURL);
         const blob = await responseFromFetch.blob();
 
-        // const transcription = await openai.audio.transcriptions.create(
-        //   {
-        //     model: "whisper-1", 
-        //     file: blob,
-        //     type: 'audio.webm',
-        //     response_format:"text", 
-        //     language: 'en',
-        //   }
-        // )
-
-        // console.log("NewTRanscript", transcription);
-
         let data = new FormData();
         data.append("file", blob, "audio.webm");
         data.append("model", "whisper-1");
