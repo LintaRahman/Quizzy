@@ -469,62 +469,16 @@ const Chatbot = () => {
                   )}
                 /> */}
                     {/* <RecordMessage handlestop={handleStop} /> */}
-                    {!permission ? (
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Typography
-                            id="modal-modal-title"
-                            variant="h6"
-                            component="h2"
-                          >
-                            Allow access to microphone
-                          </Typography>
-                          <Typography
-                            id="modal-modal-description"
-                            sx={{ mt: 2 }}
-                          >
-                            Duis mollis, est non commodo luctus, nisi erat
-                            porttitor ligula.
-                          </Typography>
-                        </Box>
-                      </Modal>
-                    ) : null}
+
 
                     {!recordingStatus ? (
-                      <><Modal
-                      open={open}
-                      onClose={handleClose}
-                      aria-labelledby="modal-modal-title"
-                      aria-describedby="modal-modal-description"
-                    >
-                      <Box sx={style}>
-                        <Typography
-                          id="modal-modal-title"
-                          variant="h6"
-                          component="h2"
-                        >
-                          Allow access to microphone
-                        </Typography>
-                        <Typography
-                          id="modal-modal-description"
-                          sx={{ mt: 2 }}
-                        >
-                          Duis mollis, est non commodo luctus, nisi erat
-                          porttitor ligula.
-                        </Typography>
-                      </Box>
-                    </Modal>
+                      
                       <button onClick={startRecording} className="send">
                         <FontAwesomeIcon
                           icon={faMicrophoneSlash}
                           style={iconStyle}
                         />
-                      </button></>
+                      </button>
                     ) : null}
                     {recordingStatus ? (
                       <div className="recording-animation-container">
