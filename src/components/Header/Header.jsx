@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderVideo from '../../assets/header.mp4'
+import HeaderVideo from '../../assets/video/header.mp4'
 import {Fade} from 'react-awesome-reveal';
 import "./Header.css";
 

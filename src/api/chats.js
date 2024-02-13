@@ -20,7 +20,8 @@ const hardQuestions = [
   "What is your preferred work style?",
   "How do you stay up-to-date with industry trends?",
   "Tell me about a time when you had to meet a tight deadline.",
-  "What do you consider your greatest professional achievement?"
+  "What do you consider your greatest professional achievement?", 
+  "Tell me about a weakness. And what you are doing to overcome it?"
 ];
 
 const openai = new OpenAI({

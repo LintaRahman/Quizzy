@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import convertTextToAudio from '../../services/TextToAudio';
+import convertTextToAudio from '../../api/TextToAudioAPI';
 import './AudioComponent.css'
 
 const AudioComponent = ({msg}) => {

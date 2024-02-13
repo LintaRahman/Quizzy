@@ -1,37 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Chatbot.css";
-// import "regenerator-runtime/runtime";
-import "../../components/RecorderAnimation/RecorderAnimation.css";
-import { TypeAnimation } from "react-type-animation";
+import "regenerator-runtime/runtime";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  clearDatabase,
-  downloadTranscript,
-  requestFeedback,
-  sendMsgToOpenAI,
-} from "../../services/chats.js";
 import ChatLoader from "../../components/ChatLoader/ChatLoader";
-import AudioComponent from "../../components/AudioComponent/AudioComponent";
 import {
   faPaperPlane,
-  faRobot,
-  faUser,
-  faDownload,
-  faArrowsRotate,
-  faComments,
   faMicrophone,
   faMicrophoneSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import convertSpeechToText from "../../services/SpeechToText.js";
-// import RecordMessage from "../../components/RecordMessage/RecordMessage.jsx";
-import { ReactMediaRecorder } from "react-media-recorder";
-import RecordIcon from "../../components/RecordMessage/RecordIcon.jsx";
-import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import { requestFeedback, sendMsgToOpenAI } from "../../api/chats.js";
+import convertSpeechToText from "../../api/SpeechToTextAPI";
+import ChatMessages from "../../components/ChatMessages/ChatMessages.jsx";
 
 const parameters = JSON.parse(localStorage.getItem("formData"));
 
@@ -41,44 +21,23 @@ const iconStyle = {
   color: "white",
 };
 
-const profImgStyle = {
-  width: "1.5rem",
-  height: "1.5rem",
-  padding: "1rem",
-  marginRight: "2rem",
-  borderRadius: "50%",
-  background: "rgba(255, 255, 255, 0.5)",
-  color: "rgba(28, 30, 58, 1)", //"rgba(28, 30, 15, 1)",
-};
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 
 const Chatbot = () => {
   const [pageLoading, isPageLoading] = useState(true);
-  const [EndOfInterview, isEndOfInterview] = useState(false);
-  const msgEnd = useRef(null);
   const [botLoading, isBotLoading] = useState(false);
   const [feedbackLoading, isFeedbackLoading] = useState(false);
   const [TranscriptLoading, setTranscriptLoading] = useState(false);
+
+  const [EndOfInterview, isEndOfInterview] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [feedback, setFeedback] = useState("");
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [permission, setPermission] = useState(false); //REMEMBER TO SET TO FALSE
+  const mediaRecorder = useRef(null);
 
-
-  const [end, setEnd] = useState(false);
+  const [stream, setStream] = useState(null);
+  const [audio, setAudio] = useState([]);
+  const [audioChunks, setAudioChunks] = useState([]);
   const [recordingStatus, setRecordingStatus] = useState(false);
   const [Transcript, setTranscript] = useState("");
   const name = parameters?.name ?? "User";
@@ -90,11 +49,7 @@ const Chatbot = () => {
     },
   ]);
 
-  useEffect(() => {
-    if (msgEnd.current) {
-      msgEnd.current.scrollIntoView();
-    }
-  }, [messages]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -137,41 +92,6 @@ const Chatbot = () => {
     if (e.key === "Enter") await handleSend();
   };
 
-  const handleStop = async (audioUrl) => {
-    console.log(audioUrl);
-    setTranscriptLoading(true);
-
-    try {
-      const transcript = await convertSpeechToText(audioUrl);
-      console.log("Transcription:", transcript);
-      // != "" ? transcript : prompt;
-      // const transcriptText = transcript.data.text ? transcript.data.text : '';
-
-      if (transcript && transcript.data && transcript.data.text) {
-        const text = transcript.data.text;
-        setMessages([...messages, { text, isBot: false, audio: audioUrl }]);
-        // console.log({ text, isBot: false, audio: audioUrl });
-        setTranscriptLoading(false);
-        const res = await sendMsgToOpenAI(text);
-        setMessages([
-          ...messages,
-          { text: text, isBot: false, audio: audioUrl },
-          { text: res, isBot: true, audio: "" },
-        ]);
-
-        // console.log(messages);
-        checkEndOfInterview();
-      } else {
-        // Handle case where transcript is not available
-        console.error("Transcript is not available.");
-      }
-    } catch (error) {
-      console.error("Error converting speech to text:", error);
-    } finally {
-      setTranscriptLoading(false);
-    }
-  };
-
   const checkEndOfInterview = async () => {
     if (localStorage.getItem("EndOfInterview") == "true") {
       document.getElementById("UserInput").disabled = true;
@@ -183,13 +103,6 @@ const Chatbot = () => {
       setFeedback(interviewFeedback);
     }
   };
-
-  const [permission, setPermission] = useState(false); //REMEMBER TO SET TO FALSE
-  const mediaRecorder = useRef(null);
-
-  const [stream, setStream] = useState(null);
-  const [audio, setAudio] = useState([]);
-  const [audioChunks, setAudioChunks] = useState([]);
 
   const getMicrophonePermission = async () => {
     if ("MediaRecorder" in window) {
@@ -217,19 +130,19 @@ const Chatbot = () => {
         console.log("Started Recording");
         setRecordingStatus(true);
         const media = new MediaRecorder(stream, { type: "audio/webm" });
-  
+
         mediaRecorder.current = media;
-  
+
         mediaRecorder.current.start();
-  
+
         let localAudioChunks = [];
-  
+
         mediaRecorder.current.ondataavailable = (event) => {
           if (typeof event.data === "undefined") return;
           if (event.data.size === 0) return;
           localAudioChunks.push(event.data);
         };
-  
+
         setAudioChunks(localAudioChunks);
       } else {
         console.error("MediaStream is not available.");
@@ -283,8 +196,6 @@ const Chatbot = () => {
     }
   };
 
-  // State for chat messages and user input
-
   return (
     <>
       {pageLoading ? (
@@ -297,150 +208,15 @@ const Chatbot = () => {
 
           <div className="Chatbot">
             <div className="main">
-              <div className="chats">
-                {messages.map((message, i) => {
-                  const isLastBotMessage =
-                    i === messages.length - 1 && message.isBot;
-                  return (
-                    <div
-                      key={i}
-                      className={message.isBot ? "chat bot" : "chat"}
-                    >
-                      <FontAwesomeIcon
-                        icon={message.isBot ? faRobot : faUser}
-                        style={profImgStyle}
-                      />
-                      {isLastBotMessage && !message.isBot && botLoading ? (
-                        <ChatLoader />
-                      ) : (
-                        <>
-                          {message.isBot ? (
-                            <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <div style={{ padding: "5px" }}>
-                                <AudioComponent msg={message.text} /> 
-                              </div>
-                              <div>
-                                <TypeAnimation
-                                  sequence={[message.text]}
-                                  wrapper="p"
-                                  speed={90}
-                                  cursor="none"
-                                  repeat={1}
-                                />
-                              </div>
-                            </div>
-                          ) : (
-                            <>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                }}
-                              >
-                                <div>
-                                  {message.audio === "" ? null : (
-                                    <audio src={message.audio} controls></audio>
-                                  )}
-                                </div>
-                                <div>
-                                  <p className="txt">{message.text}</p>
-                                </div>
-                              </div>
-                            </>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
-                {messages.length > 0 &&
-                  !messages[messages.length - 1].isBot &&
-                  botLoading && (
-                    <div className="chat bot">
-                      <FontAwesomeIcon icon={faRobot} style={profImgStyle} />
-                      <ChatLoader />
-                    </div>
-                  )}
+              <ChatMessages
+                messages={messages}
+                botLoading={botLoading}
+                TranscriptLoading={TranscriptLoading}
+                feedback={feedback}
+                feedbackLoading={feedbackLoading}
+                EndOfInterview={EndOfInterview}
+              />
 
-                {messages.length > 0 &&
-                  messages[messages.length - 1].isBot &&
-                  TranscriptLoading && (
-                    <div className="chat">
-                      <FontAwesomeIcon icon={faUser} style={profImgStyle} />
-                      <ChatLoader />
-                    </div>
-                  )}
-
-                {EndOfInterview && (
-                  <>
-                    <p className="subtitle fancy">
-                      <span>End of Interview</span>
-                    </p>
-                    <p className="feedbackContainer">
-                      {feedbackLoading ? (
-                        <ChatLoader />
-                      ) : (
-                        <>
-                          <TypeAnimation
-                            sequence={[feedback]}
-                            wrapper="p"
-                            speed={90}
-                            cursor="none"
-                            repeat={1}
-                          />
-                          {/* <AudioComponent msg={feedback} /> */}
-                        </>
-                      )}
-                    </p>
-
-                    <div className="chatsButtonsContainer">
-                      <button
-                        className="outlinedButton"
-                        onClick={() => {
-                          downloadTranscript();
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faDownload} style={iconStyle} />
-                        Download Transcript
-                      </button>
-
-                      <button
-                        className="outlinedButton"
-                        onClick={() => {
-                          window.location.reload();
-                          clearDatabase();
-                        }}
-                      >
-                        <FontAwesomeIcon
-                          icon={faArrowsRotate}
-                          style={iconStyle}
-                        />
-                        Restart Interview
-                      </button>
-                    </div>
-                    <div className="chatsButtonsContainer">
-                      <Link
-                        to="https://qualtricsxm7gwbjys5f.qualtrics.com/jfe/form/SV_eFBgfGbd5xhvemi"
-                        target="_blank"
-                      >
-                        <button className="midBtn">
-                          <FontAwesomeIcon
-                            icon={faComments}
-                            style={iconStyle}
-                          />
-                          Complete Survey
-                        </button>
-                      </Link>
-                    </div>
-                  </>
-                )}
-                <div ref={msgEnd} />
-              </div>
               {EndOfInterview ? (
                 ""
               ) : (
@@ -453,8 +229,7 @@ const Chatbot = () => {
                           style={iconStyle}
                         />
                       </button>
-                    ) : null}
-                    {recordingStatus ? (
+                    ) : (
                       <div className="recording-animation-container">
                         <button onClick={stopRecording} className="send">
                           <FontAwesomeIcon
@@ -464,7 +239,7 @@ const Chatbot = () => {
                         </button>
                         <div className="recording-dot" />
                       </div>
-                    ) : null}
+                    )}
 
                     <input
                       id="UserInput"
