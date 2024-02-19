@@ -135,7 +135,7 @@ const FormPageOne = ({onButtonClick}) => {
 
       <div className="formItem">
         <div className="col-25">
-          <label>Relevant years of experience in the job</label>
+          <label>Relevant years of experience (for the job you are applying to)</label>
           {/* <ToolTip text='How many year of experience do you have in this role, or similar roles?' /> */}
         </div>
         <div className="col-75">
@@ -161,7 +161,7 @@ const FormPageOne = ({onButtonClick}) => {
 
       <div className="formItem">
         <div className="col-25">
-          <label>Job Title</label>
+          <label>Job title for the job you are applying for</label>
           {/* <ToolTip text='Enter the title for the job you are applying for'/> */}
         </div>
         <div className="col-75">
@@ -177,7 +177,7 @@ const FormPageOne = ({onButtonClick}) => {
 
       <div className="formItem">
         <div className="col-25">
-          <label>Job Description</label>
+          <label>Job description for the job you are applying for</label>
         </div>
         <div className="col-75">
           <textarea

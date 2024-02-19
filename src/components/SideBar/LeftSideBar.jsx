@@ -91,6 +91,7 @@ const RightNav = ({ open }) => {
   const parameters = JSON.parse(localStorage.getItem("formData"));
   const name = parameters?.name ?? "User";
   const interviewType = localStorage.getItem("interviewType");
+  const job = parameters?.job ?? "Job";;
   const interviewLevel =
     interviewType === "0"
       ? "Easy"
@@ -143,7 +144,7 @@ const RightNav = ({ open }) => {
             <p>
               Interview for{" "}
               <Link to="/form">
-                {parameters.job} <EditOutlinedIcon style={{ color: "white" }} />
+                {job} <EditOutlinedIcon style={{ color: "white" }} />
               </Link>
             </p>
             <p>

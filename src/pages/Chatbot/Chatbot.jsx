@@ -9,7 +9,7 @@ import {
   faMicrophone,
   faMicrophoneSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import { requestFeedback, sendMsgToOpenAI } from "../../api/chats.js";
+import { downloadTranscript, requestFeedback, sendMsgToOpenAI } from "../../api/chats.js";
 import convertSpeechToText from "../../api/SpeechToTextAPI";
 import ChatMessages from "../../components/ChatMessages/ChatMessages.jsx";
 
@@ -98,7 +98,7 @@ const Chatbot = () => {
       isEndOfInterview(true);
       isFeedbackLoading(true);
       const interviewFeedback = await requestFeedback();
-      console.log(interviewFeedback);
+      downloadTranscript();
       isFeedbackLoading(false);
       setFeedback(interviewFeedback);
     }
