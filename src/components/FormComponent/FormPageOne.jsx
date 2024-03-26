@@ -112,23 +112,25 @@ const FormPageOne = ({onButtonClick}) => {
         <div className=" radiobutton">
           {/* <div className="radiobutton"> */}
             <input
+            id="studentYes"
               type="radio"
               name="student"
               value="Yes"
               checked={formData.student === true}
               onChange={handleStudentInputChange}
             />
-            <label>Yes</label>
+            <label htmlFor="studentYes">Yes</label>
           {/* </div>
           <div className="radiobutton"> */}
             <input
+            id="studentNo"
               type="radio"
               name="student"
               value="No"
               checked={formData.student === false}
               onChange={handleStudentInputChange}
             />{" "}
-            <label>No</label>
+            <label htmlFor="studentNo">No</label>
           {/* </div> */}
         </div>
       </div>

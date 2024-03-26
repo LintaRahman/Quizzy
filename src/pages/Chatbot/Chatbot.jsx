@@ -110,7 +110,7 @@ const Chatbot = () => {
         const mediaStream = await navigator.mediaDevices.getUserMedia({
           audio: true,
         });
-        setPermission(true);
+        // setPermission(true);
         setStream(mediaStream);
       } catch (err) {
         alert(err.message);
@@ -223,7 +223,7 @@ const Chatbot = () => {
                 <div className="chatFooter">
                   <div className="inp">
                     {!recordingStatus ? (
-                      <button onClick={startRecording} className="send">
+                      <button onClick={startRecording} className="send" id="micmute" aria-label="Mute Microphone">
                         <FontAwesomeIcon
                           icon={faMicrophoneSlash}
                           style={iconStyle}
@@ -231,7 +231,7 @@ const Chatbot = () => {
                       </button>
                     ) : (
                       <div className="recording-animation-container">
-                        <button onClick={stopRecording} className="send">
+                        <button onClick={stopRecording} className="send" id="micon" aria-label="Start Recording">
                           <FontAwesomeIcon
                             icon={faMicrophone}
                             style={iconStyle}
@@ -251,7 +251,7 @@ const Chatbot = () => {
                         setPrompt(e.target.value);
                       }}
                     />
-                    <button className="send" onClick={handleSend}>
+                    <button className="send" onClick={handleSend} id="sendMsg" aria-label="Send Message">
                       <FontAwesomeIcon icon={faPaperPlane} style={iconStyle} />
                     </button>
                   </div>
