@@ -13,7 +13,7 @@ describe('ChatLoader', () => {
     expect(chatLoaderContainer).toBeInTheDocument();
 
     // Assert that three dots are rendered
-    const dots = screen.getAllByTestId(/^dot\d$/); // Matches dot1, dot2, dot3
+    const dots = screen.getAllByTestId('dot'); // Matches dot1, dot2, dot3
     expect(dots).toHaveLength(3);
   });
 

@@ -9,8 +9,8 @@ import {
   faMicrophone,
   faMicrophoneSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import { downloadTranscript, requestFeedback, sendMsgToOpenAI } from "../../api/chats.js";
-import convertSpeechToText from "../../api/SpeechToTextAPI";
+import { downloadTranscript, requestFeedback, sendMsgToOpenAI } from "../../services/chats.js";
+import convertSpeechToText from "../../services/SpeechToTextAPI";
 import ChatMessages from "../../components/ChatMessages/ChatMessages.jsx";
 
 const parameters = JSON.parse(localStorage.getItem("formData"));

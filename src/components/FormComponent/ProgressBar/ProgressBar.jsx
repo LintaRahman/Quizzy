@@ -19,6 +19,7 @@ const Progressbar = ({ page, onPageNumberClick }) => {
       <Step>
         {({ accomplished, index }) => (
           <div
+          data-testid="step1"
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
             onClick={() => onPageNumberClick("1")}
           >
@@ -29,6 +30,7 @@ const Progressbar = ({ page, onPageNumberClick }) => {
       <Step>
         {({ accomplished, index }) => (
           <div
+          data-testid="step2"
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
             onClick={() => onPageNumberClick("2")}
           >
@@ -39,6 +41,7 @@ const Progressbar = ({ page, onPageNumberClick }) => {
       <Step>
         {({ accomplished, index }) => (
           <div
+          data-testid="step3"
             className={`indexedStep ${accomplished ? "accomplished" : null}`}
             onClick={() => onPageNumberClick("3")}
           >

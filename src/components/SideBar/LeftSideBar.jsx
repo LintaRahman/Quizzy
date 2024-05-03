@@ -8,7 +8,7 @@ import {
   faComments,
   faArrowsRotate,
 } from "@fortawesome/free-solid-svg-icons";
-import { clearDatabase, downloadTranscript, requestFeedback } from "../../api/chats.js";
+import { clearDatabase, downloadTranscript, requestFeedback } from "../../services/chats.js";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Link } from "react-router-dom";
 
@@ -99,7 +99,7 @@ const RightNav = ({ open }) => {
       ? "Medium"
       : interviewType === "5"
       ? "Hard"
-      : "Unknown";
+      : "Easy";
 
   return (
     <SideBar open={open}>
